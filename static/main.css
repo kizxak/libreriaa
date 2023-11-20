@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Paprika:700|Manjari:400');
+
+
+:root{
+--text: #041104;
+--background: #d5f6d7;
+--primary: #1d8122;
+--secondary: #cdf4cf;
+--accent: #2dc835;
+}
+
+body {
+    background-color: var(--background);
+    font-family: 'Manjari';
+    font-weight: 400;
+    color: var(--text);
+
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--text) !important;
+    accent-color: var(--accent);
+    font-family: 'Paprika';
+    font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 4.210rem; /* 67.36px */}
+
+h2 {font-size: 3.158rem; /* 50.56px */}
+
+h3 {font-size: 2.369rem; /* 37.92px */}
+
+h4 {font-size: 1.777rem; /* 28.48px */}
+
+h5 {font-size: 1.333rem; /* 21.28px */}
+
+small {font-size: 0.750rem; /* 12px */}
