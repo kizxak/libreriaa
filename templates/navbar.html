@@ -4,23 +4,23 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#">libreria </a>
         {%if user.admin%}
-        <a class="navbar-brand" href="{% url 'administrador' %}">Admin</a>
+        <a class="navbar-brand" href="">Admin</a>
         {% endif %}
-        <a class="navbar-brand" href="#" style="transform: translateX(-50%);left: 50%;position: absolute;"><img class="rounded-circle" style="width:55px;" src="{% static 'imagenes/iconos/logo.jpeg' %}" alt=""></a>
+        <a class="navbar-brand" href="#" style="transform: translateX(-50%);left: 50%;position: absolute;"><img class="rounded-circle" style="width:55px;" src="" alt=""></a>
         <ul class="navbar-nav ms-auto d-flex flex-row ">
             <li class="nav-item text-center">
-            <a class="nav-link" href="{% url 'mostrarCatalogo' %}">Catalogo</a>
+            <a class="nav-link" href="">Catalogo</a>
             {% if user.is_authenticated %}
             <li>
-            <a class="nav-link" href="{% url  'logout' %}">Cerrar sesión</a>
+            <a class="nav-link" href="">Cerrar sesión</a>
             <li>
                 <a href="#" class="nav-link">Hola , {{ user.nombre}}</a>
             </li>
             {% else %}
             <li>
-            <a href="{% url  'login' %}" class="nav-link">Iniciar sesión</a>
+            <a href="" class="nav-link">Iniciar sesión</a>
             <li>
-            <a href="{% url  'registrarUsuario' %}" class="nav-link"> Registrarse</a>
+            <a href="" class="nav-link"> Registrarse</a>
             {% endif %}
         </ul>
     </div>
