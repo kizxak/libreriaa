@@ -14,6 +14,7 @@ class Libros(models.Model):
     autor = models.CharField(max_length=255, blank=True, null=True)
     editorial = models.CharField(max_length=255, blank=True, null=True)
     fecha_publicacion = models.IntegerField(blank=True, null=True)
+    comentarios = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
