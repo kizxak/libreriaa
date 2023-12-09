@@ -32,10 +32,21 @@
                         <td> {{ libros.editorial }} </td>
                         <td> {{ libros.fecha_publicacion }} </td>
                         <td> {{ libros.comentarios}}</td>
-                        <a href="{% url 'editarLibro' id=libros.id_libro %}" class="btn btn-primary">Editar</a>
-
+                        <td>
+                            <a href=""><i class="fas fa-pen"></i></a>
+                            <a href="#" onclick="eliminarLibro('{{ libros.id_libro }}')"><i class="fas fa-trash"></i></a>
+                            <a href="{% url 'editarLibro' id=libros.id_libro %}"><i class="fas fa-edit"></i></a>
+                        </td>
                     </tr>
                     {% endfor %}
+
+                    <script>
+                        function eliminarLibro(idLibro) {
+                            if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
+                                window.location.href = '/eliminar_libro/?id=' + idLibro;
+                            }
+                        }
+                    </script>
 
                 </tbody>
             </table>
