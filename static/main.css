@@ -51,3 +51,7 @@ small {font-size: 0.750rem; /* 12px */}
 .container {
     background-color: var(--primary);
 }
+#contenedorFormulario {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}

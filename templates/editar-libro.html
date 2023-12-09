@@ -1,0 +1,33 @@
+{% load static %}
+{% include "head.html" %}
+{% include "navbar.html" %}
+
+{% block contenido %}
+    <div class="container mx-auto" id="contenedorFormulario">
+        <h2 class="">Editar libro</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for campo in formulario %}
+
+
+            <div class="mb-3">
+            <label for="" class="form-label">{{campo.label}}</label>
+            <input 
+                type="{{campo.field.widget.input_type }}"
+                class="form-control" 
+                name="{{ campo.name }}" 
+                id="" 
+                aria-describedby="helpId" 
+                placeholder="{{ campo.label }}">
+            </div>
+            <div class="col-12 help-text">{{ campo.errors }}</div>
+
+
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Actualizar libro</button>
+            <br>
+            <a href="" class="btn btn-primary mt-3">Atrás</a>
+        </form>
+    </div>
+{% endblock %}

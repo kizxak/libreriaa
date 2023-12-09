@@ -1,6 +1,7 @@
 <html>
     {% load static %}
     {% include "head.html" %}
+    {% include "navbar.html" %}
     <body>
         <div class="container">
             <h2>Lista de libros</h2>
@@ -31,6 +32,8 @@
                         <td> {{ libros.editorial }} </td>
                         <td> {{ libros.fecha_publicacion }} </td>
                         <td> {{ libros.comentarios}}</td>
+                        <a href="{% url 'editarLibro' id=libros.id_libro %}" class="btn btn-primary">Editar</a>
+
                     </tr>
                     {% endfor %}
 
@@ -38,6 +41,8 @@
             </table>
             {% else %}
             {% endif %}
+            <br>
+            <br>
         </div>
     </body>
 </html>

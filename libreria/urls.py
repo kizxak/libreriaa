@@ -21,4 +21,6 @@ from libros import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("lista-libros/", views.listar_libros, name="listar-libros"),
+    path('editar-libro/<int:id>/', views.editarLibro , name='editarLibro'),
+    path('agregar-libro/', views.agregarLibro, name='agregarLibro')
 ]

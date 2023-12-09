@@ -1,0 +1,34 @@
+<html>
+    {% load static %}
+    {% include "head.html" %}
+    {% include "navbar.html" %}
+
+    <body>
+        <div class="container" id="contenedorFormulario">
+            <h2>Agregar libro</h2>
+
+            <form enctype="multipart/form-data" method="post" id="formLibro">
+                {% csrf_token %}
+                {% for campo in formulario %}
+
+
+                <div class="mb-3">
+                <label for="" class="form-label">{{campo.label}}</label>
+                <input 
+                    type="{{campo.field.widget.input_type }}"
+                    class="form-control" 
+                    name="{{ campo.name }}" 
+                    id="" 
+                    aria-describedby="helpId" 
+                    placeholder="{{ campo.label }}">
+                </div>
+                <div class="col-12 help-text">{{ campo.errors }}</div>
+
+
+                {% endfor %}
+
+                <input name="" id="botonAgregar" class="btn btn-primary" type="submit" value="Agregar libro">
+            </form>
+        </div>
+    </body>
+</html>
