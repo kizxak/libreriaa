@@ -26,9 +26,7 @@ def editarLibro(request, id):
     if request.method == 'POST':
         formulario = LibrosForm(request.POST, request.FILES, instance=libro)
         if formulario.is_valid():
-            
             libro = formulario.save()
-
             return redirect('listar-libros')
     else:
         formulario = LibrosForm(instance=libro)
