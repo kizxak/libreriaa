@@ -28,30 +28,8 @@ class Socios(models.Model):
     direccion = models.CharField(max_length=255, blank=True, null=True)
     correo = models.CharField(max_length=255, blank=True, null=True)
     telefono = models.CharField(max_length=20, blank=True, null=True)
+    contrasena = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'socios'
-
-
-class Ventas(models.Model):
-    id_venta = models.AutoField(primary_key=True)
-    id_socio = models.ForeignKey(Socios, models.DO_NOTHING, db_column='id_socio', blank=True, null=True)
-    fecha_venta = models.DateField(blank=True, null=True)
-    monto_total = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    metodo_pago = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'ventas'
-
-
-class VentasLibros(models.Model):
-    id_venta = models.OneToOneField(Ventas, models.DO_NOTHING, db_column='id_venta', primary_key=True)  # The composite primary key (id_venta, id_libro) found, that is not supported. The first column is selected.
-    id_libro = models.ForeignKey(Libros, models.DO_NOTHING, db_column='id_libro')
-    cantidad = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'ventas_libros'
-        unique_together = (('id_venta', 'id_libro'),)
