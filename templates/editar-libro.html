@@ -1,6 +1,6 @@
-{% load static %}
-{% include "head.html" %}
-{% include "navbar.html" %}
+{% load static %}<!-- Carga de archivos estáticos -->
+{% include "head.html" %}<!-- Incluye el encabezado HTML -->
+{% include "navbar.html" %}<!-- Incluye la barra de navegación -->
 
 {% block contenido %}
     <div class="container mx-auto" id="contenedorFormulario">
@@ -10,6 +10,7 @@
             {% for campo in formulario %}
                 <div class="mb-3">
                     <label for="" class="form-label">{{campo.label}}</label>
+                     <!-- Muestra una etiqueta para el campo de entrada-->
                     <input 
                         type="{{campo.field.widget.input_type }}"
                         class="form-control" 
@@ -19,12 +20,14 @@
                         aria-describedby="helpId" 
                         placeholder="{{ campo.label }}">
                 </div>
-                <div class="col-12 help-text">{{ campo.errors }}</div>
+                <div class="col-12 help-text">{{ campo.errors }}</div><!-- Muestra los errores de validación -->
             {% endfor %}
         
             <button type="submit" class="btn btn-primary">Actualizar libro</button>
+             <!-- Botón de envío del formulario con el texto "Actualizar libro" -->
             <br>
             <a href="{% url 'listar-libros' %}" class="btn btn-primary mt-3">Atrás</a>
+            <!-- Enlace para volver a la lista de libros -->
         </form>
     </div>
 {% endblock %}
