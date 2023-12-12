@@ -1,3 +1,4 @@
+# Importa funciones y clases necesarias de Django
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from .models import Libros,Socios
@@ -8,10 +9,12 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
+# Vista para mostrar la lista de libros
 def listar_libros(request):
     libros = Libros.objects.all()
     return render(request, "listar_libros.html", {"libros": libros})
-
+#vista para eliminar libros
 def eliminar_libro(request):
     if 'id' in request.GET:
         id_libro = request.GET['id']
@@ -21,7 +24,7 @@ def eliminar_libro(request):
 
     return redirect("listar-libros")
 
-
+#vista para editar los libros
 def editarLibro(request, id):
     libro = get_object_or_404(Libros, id_libro=id)
 
@@ -35,7 +38,7 @@ def editarLibro(request, id):
 
     return render(request, 'editar-libro.html', {'formulario': formulario, 'libro': libro})
 
-
+#vista para agregar libros
 def agregarLibro(request):
     if request.method == 'POST':
         formulario = LibrosForm(request.POST, request.FILES)
@@ -47,7 +50,7 @@ def agregarLibro(request):
         formulario = LibrosForm()
 
     return render(request, 'agregar-libro.html', {'formulario': formulario})
-
+#vista para que el usuario, Socio, pueda iniciar sesion
 def login(request):
     form = LoginForm(request.POST)
     if request.method =="POST" and form.is_valid():
