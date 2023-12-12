@@ -1,29 +1,32 @@
-{% csrf_token %}
-{% load static %}
+{% csrf_token %} <!-- Incluye el token CSRF para proteger contra ataques -->
+{% load static %} <!-- Carga de archivos estáticos -->
+
 <!-- Navbar -->
 <nav class="navbar sticky-top" style="background-color: var(--secondary);">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">libreria </a>
-        <ul class="navbar-nav ms-auto d-flex flex-row ">
-            {%if request.session.autenticado %}
-            <li class="nav-item text-center nav-link">Hola {{request.session.nombre_completo}}
+        <!-- Lista de navegación en la barra -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+            {% if request.session.autenticado %}
+            <!-- Elementos del navbar -->
+            <li class="nav-item text-center nav-link">Hola {{ request.session.nombre_completo }}</li>
+            <li>
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión 😬</a>
             </li>
             <li>
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión 😬</a>
-            </li>
-            <li>
-                <a class="nav-link" href="{% url 'agregarLibro' %}">agregar libro</a>
+                <a class="nav-link" href="{% url 'agregarLibro' %}">Agregar libro</a>
             </li>
             {% endif %}
             {% if not request.session.autenticado %}
+            <!-- Elementos del navbar para usuarios no autenticados -->
             <li>
-            <a href="{%url 'login' %}" class="nav-link">Iniciar sesión</a>
+                <a href="{% url 'login' %}" class="nav-link">Iniciar sesión</a>
             </li>
-            {%endif%}
+            {% endif %}
+            <!-- Elemento común para listar libros -->
             <li class="nav-item text-center">
-                <a class="nav-link" href="{% url 'listar-libros' %}">listar</a>
+                <a class="nav-link" href="{% url 'listar-libros' %}">Listar</a>
             </li>
         </ul>
     </div>
 </nav>
-
