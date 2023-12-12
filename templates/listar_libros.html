@@ -1,18 +1,21 @@
 <html>
-    {% load static %}
-    {% include "head.html" %}
-    {% include "navbar.html" %}
+    {% load static %} <!-- Carga de archivos estáticos -->
+    {% include "head.html" %} <!-- Incluye el encabezado HTML -->
+    {% include "navbar.html" %} <!-- Incluye la barra de navegación -->
+
     <body>
         <div class="container rounded">
             <h2>Lista de libros</h2>
+            <!-- Alerta -->
             <div class="alert alert-secondary" role="alert">
                 Lista de libros ingresadas en el sistema.
             </div>
             <hr>
-            <!-- Tabla con datos-->
+            <!-- Tabla con datos -->
             {% if libros %}
             <table class="table rounded">
                 <thead>
+                    <!-- Encabezados de la tabla -->
                     <tr>
                         <th>ID </th>
                         <th>Titulo</th>
@@ -20,29 +23,36 @@
                         <th>Editorial</th>
                         <th>Fecha publicacion</th>
                         <th>Comentarios</th>
-                        {%if request.session.autenticado %}
+                        {% if request.session.autenticado %}
+                        <!-- Opciones adicionales si es que el usuario está autenticado -->
                         <th>Opciones</th>
-                        {%endif%}
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for libros in libros %}
+                    <!-- Iteración sobre la lista de libros -->
+                    {% for libro in libros %}
                     <tr>
-                        <td> {{ libros.id_libro }} </td>
-                        <td> {{ libros.titulo }} </td>
-                        <td> {{ libros.autor }} </td>
-                        <td> {{ libros.editorial }} </td>
-                        <td> {{ libros.fecha_publicacion }} </td>
-                        <td> {{ libros.comentarios}}</td>
-                        {%if request.session.autenticado %}
+                        <!-- Datos de cada libro -->
+                        <td>{{ libro.id_libro }}</td>
+                        <td>{{ libro.titulo }}</td>
+                        <td>{{ libro.autor }}</td>
+                        <td>{{ libro.editorial }}</td>
+                        <td>{{ libro.fecha_publicacion }}</td>
+                        <td>{{ libro.comentarios }}</td>
+                        {% if request.session.autenticado %}
+                        <!-- Opciones adicionales si es que el usuario está autenticado -->
                         <td>
-                            <a href="#" onclick="eliminarLibro('{{ libros.id_libro }}')"><i class="fas fa-trash"></i></a>
-                            <a href="{% url 'editarLibro' id=libros.id_libro %}"><i class="fas fa-edit"></i></a>
+                            <!-- eliminar un libro con confirmación -->
+                            <a href="#" onclick="eliminarLibro('{{ libro.id_libro }}')"><i class="fas fa-trash"></i></a>
+                            <!-- editar un libro -->
+                            <a href="{% url 'editarLibro' id=libro.id_libro %}"><i class="fas fa-edit"></i></a>
                         </td>
                         {% endif %}
                     </tr>
                     {% endfor %}
 
+                    <!-- Script para confirmar la eliminación -->
                     <script>
                         function eliminarLibro(idLibro) {
                             if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
@@ -54,6 +64,7 @@
                 </tbody>
             </table>
             {% else %}
+            
             {% endif %}
             <br>
             <br>
