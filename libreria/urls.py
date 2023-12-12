@@ -23,5 +23,7 @@ urlpatterns = [
     path("lista-libros/", views.listar_libros, name="listar-libros"),
     path("eliminar_libro/", views.eliminar_libro, name="eliminar-libro"),
     path('editar-libro/<int:id>/', views.editarLibro , name='editarLibro'),
-    path('agregar-libro/', views.agregarLibro, name='agregarLibro')
+    path('agregar-libro/', views.agregarLibro, name='agregarLibro'),
+    path('login/',views.login,name="login"),
+    path('logout/', views.logout, name="logout")
 ]

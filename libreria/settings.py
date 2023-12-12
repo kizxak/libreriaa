@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1","192.168.4.49","192.168.4.48"]
 
+LOGIN_URL = '/login'
 
 # Application definition
 

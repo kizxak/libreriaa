@@ -13,3 +13,7 @@ class LibrosForm(forms.ModelForm):
             'fecha_publicacion':NumberInput(attrs={'class': "form-control",'placeholder': 'año de publicación'}),
             'comentarios':TextInput(attrs={'class': "form-control",'placeholder': 'comentarios'}),
         }
+        
+class LoginForm(forms.Form):
+    txt_correo  = forms.CharField()
+    txt_password =forms.CharField(widget = forms.PasswordInput)

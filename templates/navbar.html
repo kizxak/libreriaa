@@ -1,18 +1,27 @@
+{% csrf_token %}
 {% load static %}
 <!-- Navbar -->
 <nav class="navbar sticky-top" style="background-color: var(--secondary);">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">libreria </a>
         <ul class="navbar-nav ms-auto d-flex flex-row ">
-            <li class="nav-item text-center">
-            <a class="nav-link" href="{% url 'listar-libros' %}">listar</a>
+            {%if request.session.autenticado %}
+            <li class="nav-item text-center nav-link">Hola {{request.session.nombre_completo}}
+            </li>
             <li>
-            <a class="nav-link" href="">Cerrar sesión 😬</a>
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión 😬</a>
+            </li>
             <li>
                 <a class="nav-link" href="{% url 'agregarLibro' %}">agregar libro</a>
             </li>
+            {% endif %}
+            {% if not request.session.autenticado %}
             <li>
-            <a href="" class="nav-link">Iniciar sesión</a>
+            <a href="{%url 'login' %}" class="nav-link">Iniciar sesión</a>
+            </li>
+            {%endif%}
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'listar-libros' %}">listar</a>
             </li>
         </ul>
     </div>

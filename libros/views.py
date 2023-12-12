@@ -1,8 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from .models import Libros
-from .forms import LibrosForm
+from .models import Libros,Socios
+from .forms import LibrosForm,LoginForm
 from django.urls import reverse
+from django import forms
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -45,3 +47,25 @@ def agregarLibro(request):
         formulario = LibrosForm()
 
     return render(request, 'agregar-libro.html', {'formulario': formulario})
+
+def login(request):
+    form = LoginForm(request.POST)
+    if request.method =="POST" and form.is_valid():
+        #Asociamos las variables del formulario a variables de la función
+        txt_correo = form.cleaned_data.get("txt_correo")
+        txt_password = form.cleaned_data.get("txt_password")
+        socios = Socios.objects.get(correo = txt_correo)
+            #En caso de que la contraseña ingresada sea igual a la contraseña almacenada
+        if socios.contrasena == txt_password:
+            request.session['autenticado'] = True 
+            request.session['correo'] = socios.correo 
+            request.session['nombre_completo'] = socios.nombre +" "+ socios.apellido
+            return redirect("listar-libros")
+        else:
+                form.add_error(None, 'Contraseña incorrecta')
+    return render(request,"login.html",{"form" : form })
+
+#Cerrar sesión
+def logout(request):
+    request.session.pop('autenticado',None)
+    return redirect('login')
