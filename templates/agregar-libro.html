@@ -1,7 +1,7 @@
 <html>
-    {% load static %}
-    {% include "head.html" %}
-    {% include "navbar.html" %}
+    {% load static %} <!-- Carga de archivos estáticos -->
+    {% include "head.html" %} <!-- Incluye el encabezado HTML -->
+    {% include "navbar.html" %}<!-- barra de navegación -->
 
     <body>
         <div class="container" id="contenedorFormulario">
@@ -14,6 +14,7 @@
 
                 <div class="mb-3">
                 <label for="" class="form-label">{{campo.label}}</label>
+                    <!--Muestra una etiqueta para el campo de entrada-->
                 <input 
                     type="{{campo.field.widget.input_type }}"
                     class="form-control" 
@@ -22,12 +23,14 @@
                     aria-describedby="helpId" 
                     placeholder="{{ campo.label }}">
                 </div>
-                <div class="col-12 help-text">{{ campo.errors }}</div>
+                <div class="col-12 help-text">{{ campo.errors }}</div> <!-- Muestra los errores de validación para cada campo -->
+
 
 
                 {% endfor %}
 
                 <input name="" id="botonAgregar" class="btn btn-primary" type="submit" value="Agregar libro">
+                <!---Botón de envío del formulario--->
             </form>
         </div>
     </body>
